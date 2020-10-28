@@ -88,10 +88,11 @@ window.onload  = function () {
                 let barStartPoint = 0
                 function progressbar(){
                     barStartPoint = barStartPoint + .1
-                    console.log(barStartPoint)
+                    item.innerHTML = `<div>${parseInt(barStartPoint)}</div>`
                     item.style.width = `${barStartPoint}%`
                     item.style.height = `${progressBarPluginHeight}`
                 item.style.background = `${progressBarPluginBg}`
+                
                 if(barStartPoint>progressBarPluginPercent){
                     clearInterval(stop)
                 }
@@ -124,7 +125,7 @@ window.onscroll  = function () {
                 let barStartPoint = 0
                 function progressbar(){
                     barStartPoint = barStartPoint + .1
-                    console.log(barStartPoint)
+                    item.innerHTML = `<div class="percentages">${parseInt(barStartPoint)}</div>`
                     item.style.width = `${barStartPoint}%`
                     item.style.height = `${progressBarPluginHeight}`
                 item.style.background = `${progressBarPluginBg}`
