@@ -1,0 +1,8 @@
+<div class="abmshawon" data-name="counterup" data-view="true" data-speed="20">
+        100
+</div>
+    
+
+ <div class="abmshawon" data-name="progressbar" data-view="true" data-speed="20" data-height="10px" data-parcent="100" data-bg="blue" data-pmove="true">
+        
+ </div>
