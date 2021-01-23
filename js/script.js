@@ -11,141 +11,270 @@ function isInViewport(element) {
         rect.right <= (window.innerWidth || document.documentElement.clientWidth)
     );
 }
+
 // find viewport end
-window.onload  = function () {
-    mainArr.map(item=>{
-    if (isInViewport(item)) {
-        
-        if (item.dataset.view) {
-            let pluginName = item.dataset.name
-            let progressBarPluginHeight = item.dataset.height
-            let progressBarPluginPercent = item.dataset.parcent
-            let progressBarPluginBg = item.dataset.bg
-            let pluginPercentMove = item.dataset.pmove
-            let pluginRunSpeed = item.dataset.speed
-            if(pluginName === "counterup"){
-                let counterNumber = item.innerHTML
-                let countstartPoint = 0
-                function countRunner(){
-                    
-                    item.innerHTML = countstartPoint++
-                    if(countstartPoint > Number(counterNumber)){
-                        clearInterval(stop)
-                    }
-                }
-        
-                let stop = setInterval(()=>{
-                    countRunner()
-                },pluginRunSpeed)
-            }else if(pluginName === "progressbar"){
-                let barStartPoint = 0
-                function progressbar(){
-                    barStartPoint = barStartPoint + .1
-                    if(pluginPercentMove == "true"){
-                        item.style.position = 'relative'
-                         item.innerHTML = `<div class="percentages" style="position:absolute;right:0;top:0;">${parseInt(barStartPoint)}</div>`
-                    }else {
-                         item.innerHTML = `<div class="percentages">${parseInt(barStartPoint)}</div>`
-                    }
-                    
-                    item.style.width = `${barStartPoint}%`
-                    item.style.height = `${progressBarPluginHeight}`
-                item.style.background = `${progressBarPluginBg}`
-                if(barStartPoint>progressBarPluginPercent){
-                    clearInterval(stop)
-                }
-                }
-                let stop = setInterval(()=>{
-                    progressbar()
-                },pluginRunSpeed)
-            }
-            item.dataset.view = ""
+
+mainArr.map(item => {
+    let pluginName = item.dataset.name
+    let times = item.dataset.time
+    let countDownDate = new Date(times).getTime();
+    let x = setInterval(function () {
+        let now = new Date().getTime();
+        let distance = countDownDate - now;
+        let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        if (pluginName === "counterdownday") {
+            item.innerHTML = days
+        } else if (pluginName === "counterdownhour") {
+            item.innerHTML = hours
+        } else if (pluginName === "counterdownmin") {
+            item.innerHTML = minutes
+        } else if (pluginName === "counterdownsec") {
+            item.innerHTML = seconds
         }
+        if (distance < 0) {
+            clearInterval(x);
+            item.innerHTML = "EXPIRED";
+        }
+    }, 1000);
+
+    if (pluginName === "snow") {
+        let body = document.querySelector("body")
+        body.style.overflowX = "hidden"
+       let bg = item.dataset.bg
+       let snowamount = item.dataset.snowamount
+       let snowsize = item.dataset.snowsize
+       let snowspeed = item.dataset.snowspeed
+       let height = item.dataset.height
+       let width = item.dataset.width
+        item.style.background = bg
+        let ctx = item.getContext("2d");
+
+        
+        let w = window.innerWidth;
+        let h = window.innerHeight;
+        if(width === "auto"){
+            w = window.innerWidth;
+       }else{
+           w = width;
+       }
+        if(height === "auto"){
+             h = window.innerHeight;
+        }else{
+            h = height;
+        }
+        
+
+        item.width = w;
+        item.height = h;
+        // amount of snow
+        let mf = snowamount;
+
+        let flakes = [];
+
+        for (i = 0; i < mf; i++) {
+            flakes.push({
+                x: Math.random() * w,
+                y: Math.random() * h,
+                r: Math.random() * snowsize + 2, // size of snow
+                d: Math.random() + parseInt(snowspeed), //speed of snow
+
+            })
+        }
+
+        function drawFlakes() {
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = "white";
+            ctx.beginPath();
+            for (i = 0; i < mf; i++) {
+                let f = flakes[i];
+                ctx.moveTo(f.x, f.y);
+                ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2, true);
+            }
+            ctx.fill()
+            moveFlakes()
+        }
+
+        function moveFlakes() {
+
+            for (i = 0; i < mf; i++) {
+                let f = flakes[i];
+                f.y += Math.pow(f.d, 2);
+                if (f.y > h) {
+                    flakes[i] = {
+                        x: f.x,
+                        y: 0,
+                        r: f.r,
+                        d: f.d
+                    };
+                }
+
+            }
+
+
+        }
+        setInterval(drawFlakes, 25);
     }
+
 })
-}
-    
-window.onscroll  = function () {
-    mainArr.map(item=>{
-    if (isInViewport(item)) {
-        
-        if (item.dataset.view) {
-            let pluginName = item.dataset.name
-            let progressBarPluginHeight = item.dataset.height
-            let progressBarPluginPercent = item.dataset.parcent
-            let progressBarPluginBg = item.dataset.bg
-            let pluginPercentMove = item.dataset.pmove
-            let pluginRunSpeed = item.dataset.speed
-            if(pluginName === "counterup"){
-                let counterNumber = item.innerHTML
-                let countstartPoint = 0
-                function countRunner(){
-                    
-                    item.innerHTML = countstartPoint++
-                    if(countstartPoint > Number(counterNumber)){
-                        clearInterval(stop)
+
+
+
+
+
+
+
+
+
+window.onload = function () {
+    mainArr.map(item => {
+        if (isInViewport(item)) {
+            if (item.dataset.view) {
+                let pluginName = item.dataset.name
+                let progressBarPluginHeight = item.dataset.height
+                let progressBarPluginPercent = item.dataset.parcent
+                let progressBarPluginBg = item.dataset.bg
+                let pluginPercentMove = item.dataset.pmove
+                let pluginRunSpeed = item.dataset.speed
+                if (pluginName === "counterup") {
+                    let counterNumber = item.innerHTML
+                    let countstartPoint = 0
+
+                    function countRunner() {
+
+                        item.innerHTML = countstartPoint++
+                        if (countstartPoint > Number(counterNumber)) {
+                            clearInterval(stop)
+                        }
                     }
-                }
-        
-                let stop = setInterval(()=>{
-                    countRunner()
-                },pluginRunSpeed)
-            }else if(pluginName === "progressbar"){
-                let barStartPoint = 0
-                function progressbar(){
-                    barStartPoint = barStartPoint + .1
-                    if(pluginPercentMove == "true"){
-                        item.style.position = 'relative'
-                         item.innerHTML = `<div class="percentages" style="position:absolute;right:0;top:0;">${parseInt(barStartPoint)}</div>`
-                    }else {
-                         item.innerHTML = `<div class="percentages">${parseInt(barStartPoint)}</div>`
+                    let stop = setInterval(() => {
+                        countRunner()
+                    }, pluginRunSpeed)
+                } else if (pluginName === "progressbar") {
+                    let barStartPoint = 0
+
+                    function progressbar() {
+                        barStartPoint = barStartPoint + .1
+                        if (pluginPercentMove == "true") {
+                            item.style.position = 'relative'
+                            item.innerHTML = `<div class="percentages" style="position:absolute;right:0;top:0;">${parseInt(barStartPoint)}</div>`
+                        } else {
+                            item.innerHTML = `<div class="percentages">${parseInt(barStartPoint)}</div>`
+                        }
+                        item.style.width = `${barStartPoint}%`
+                        item.style.height = `${progressBarPluginHeight}`
+                        item.style.background = `${progressBarPluginBg}`
+                        if (barStartPoint > progressBarPluginPercent) {
+                            clearInterval(stop)
+                        }
                     }
-                    
-                    item.style.width = `${barStartPoint}%`
-                    item.style.height = `${progressBarPluginHeight}`
-                item.style.background = `${progressBarPluginBg}`
-                if(barStartPoint>progressBarPluginPercent){
-                    clearInterval(stop)
-                }
-                }
-                let stop = setInterval(()=>{
-                    progressbar()
-                },pluginRunSpeed)
-            }else if(pluginName === "typejs"){
-                let typeText = item.innerHTML
-                let typeArr = item.innerHTML.split("")
-                let countstartPoint = -1
-                item.innerHTML =""
-                function typejs(){
-                    if(countstartPoint<typeText.length){
-                        countstartPoint++
+                    let stop = setInterval(() => {
+                        progressbar()
+                    }, pluginRunSpeed)
+                } else if (pluginName === "typejs") {
+                    let typeText = item.innerHTML
+                    let typeArr = item.innerHTML.split("")
+                    let countstartPoint = -1
+                    item.innerHTML = ""
+
+                    function typejs() {
+                        if (countstartPoint < typeText.length) {
+                            countstartPoint++
                             item.innerHTML += typeText.charAt(countstartPoint)
                             typeArr = item.innerHTML.split("")
-                    }else{
-                        typeArr.pop()
-                        item.innerHTML = typeArr.join("")
-                         if(typeArr.length==0){
-                            countstartPoint=-1
-                         }
+                        } else {
+                            typeArr.pop()
+                            item.innerHTML = typeArr.join("")
+                            if (typeArr.length == 0) {
+                                countstartPoint = -1
+                            }
+                        }
                     }
-                    
-                    
+                    let stop = setInterval(() => {
+                        typejs()
+                    }, 200);
                 }
-                
-
-                let stop = setInterval(() => {
-                    typejs()
-                }, 200);
-
-
-              
-                
-                
-                
+                item.dataset.view = ""
             }
-            item.dataset.view = ""
         }
-    }
-})
+    })
+}
+
+window.onscroll = function () {
+    mainArr.map(item => {
+        if (isInViewport(item)) {
+
+            if (item.dataset.view) {
+                let pluginName = item.dataset.name
+                let progressBarPluginHeight = item.dataset.height
+                let progressBarPluginPercent = item.dataset.parcent
+                let progressBarPluginBg = item.dataset.bg
+                let pluginPercentMove = item.dataset.pmove
+                let pluginRunSpeed = item.dataset.speed
+                if (pluginName === "counterup") {
+                    let counterNumber = item.innerHTML
+                    let countstartPoint = 0
+
+                    function countRunner() {
+
+                        item.innerHTML = countstartPoint++
+                        if (countstartPoint > Number(counterNumber)) {
+                            clearInterval(stop)
+                        }
+                    }
+                    let stop = setInterval(() => {
+                        countRunner()
+                    }, pluginRunSpeed)
+                } else if (pluginName === "progressbar") {
+                    let barStartPoint = 0
+
+                    function progressbar() {
+                        barStartPoint = barStartPoint + .1
+                        if (pluginPercentMove == "true") {
+                            item.style.position = 'relative'
+                            item.innerHTML = `<div class="percentages" style="position:absolute;right:0;top:0;">${parseInt(barStartPoint)}</div>`
+                        } else {
+                            item.innerHTML = `<div class="percentages">${parseInt(barStartPoint)}</div>`
+                        }
+
+                        item.style.width = `${barStartPoint}%`
+                        item.style.height = `${progressBarPluginHeight}`
+                        item.style.background = `${progressBarPluginBg}`
+                        if (barStartPoint > progressBarPluginPercent) {
+                            clearInterval(stop)
+                        }
+                    }
+                    let stop = setInterval(() => {
+                        progressbar()
+                    }, pluginRunSpeed)
+                } else if (pluginName === "typejs") {
+                    let typeText = item.innerHTML
+                    let typeArr = item.innerHTML.split("")
+                    let countstartPoint = -1
+                    item.innerHTML = ""
+
+                    function typejs() {
+                        if (countstartPoint < typeText.length) {
+                            countstartPoint++
+                            item.innerHTML += typeText.charAt(countstartPoint)
+                            typeArr = item.innerHTML.split("")
+                        } else {
+                            typeArr.pop()
+                            item.innerHTML = typeArr.join("")
+                            if (typeArr.length == 0) {
+                                countstartPoint = -1
+                            }
+                        }
+                    }
+                    let stop = setInterval(() => {
+                        typejs()
+                    }, 200);
+                }
+                item.dataset.view = ""
+            }
+        }
+    })
 }
 //counterup start

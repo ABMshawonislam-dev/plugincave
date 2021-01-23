@@ -6,3 +6,21 @@
  <div class="abmshawon" data-name="progressbar" data-view="true" data-speed="20" data-height="10px" data-parcent="100" data-bg="blue" data-pmove="true">
         
  </div>
+
+<div class="abmshawon" data-name="typejs" data-view="true" data-speed="20">Welcome to PluginCave</div>
+
+
+<div class="abmshawon" data-name="counterdownday" data-time="Jan 5, 2022 15:37:25">
+
+</div>
+
+<div class="abmshawon" data-name="counterdownhour" data-time="Jan 5, 2022 15:37:25">
+
+</div>
+
+<div class="abmshawon" data-name="counterdownmin" data-time="Jan 5, 2022 15:37:25">
+
+</div>
+<div class="abmshawon" data-name="counterdownsec" data-time="Jan 5, 2022 15:37:25">
+
+</div>
