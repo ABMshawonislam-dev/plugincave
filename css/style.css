@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+pre{
+    background: rgba(0,0,0,.05);
+    padding: 16px;
+    margin-bottom: 0 !important;
+}
+
+.percentages{
+    top: -22px !important;
+}
+
+.time {
+	float: left;
+	background: rgba(0,0,0,.05);
+    width: 25%;
+    padding: 30px 0;
+    text-align: center;
+    border-bottom: 1px solid rgba(0,0,0,.05);
+}

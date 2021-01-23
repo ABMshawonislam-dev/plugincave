@@ -24,3 +24,7 @@
 <div class="abmshawon" data-name="counterdownsec" data-time="Jan 5, 2022 15:37:25">
 
 </div>
+
+<canvas class="abmshawon" data-name="snow" data-bg="black" data-snowamount="100" data-snowsize="3" data-snowspeed="2" data-width="auto" data-height="auto">
+
+</canvas>
