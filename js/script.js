@@ -116,6 +116,17 @@ mainArr.map(item => {
 
         }
         setInterval(drawFlakes, 25);
+    }else if(pluginName === "bgspreader"){
+        let bg = item.dataset.bg
+        let height = item.dataset.height
+        item.style.background = bg;
+        item.style.backgroundAttachment = "fixed";
+        item.style.height = height;
+        item.style.clipPath = "circle(0px at center)";
+        window.addEventListener("scroll",function(){
+            let value = window.scrollY
+            item.style.clipPath = `circle(${value}px at center)`;
+        })
     }
 
 })
