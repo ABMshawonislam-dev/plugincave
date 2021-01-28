@@ -28,3 +28,6 @@
 <canvas class="abmshawon" data-name="snow" data-bg="black" data-snowamount="100" data-snowsize="3" data-snowspeed="2" data-width="auto" data-height="auto">
 
 </canvas>
+
+
+<div class="abmshawon" data-name="bgspreader" data-bg="url(images/banner.jpg)" data-height="250vh" data-view="true">
