@@ -127,7 +127,31 @@ mainArr.map(item => {
             let value = window.scrollY
             item.style.clipPath = `circle(${value}px at center)`;
         })
+    }else if(pluginName === "popup"){
+        let id = item.dataset.popid
+        let bg = item.dataset.bg
+        let selector = document.querySelector(`${id}`)
+        selector.style.width = "100%"
+        selector.style.height = "100vh"
+        selector.style.background = `${bg}`
+        selector.style.position = "fixed"
+        selector.style.top = "0"
+        selector.style.left = "0"
+        selector.style.transform = "scale(0)"
+        selector.style.transition = ".4s"
+
+        item.addEventListener("click",function(){
+            selector.style.transform = "scale(1)"
+        })
+    }else if(pluginName === "popclose"){
+        let id = item.dataset.popid
+        let selector = document.querySelector(`${id}`)
+        selector.style.cursor = "pointer"
+        item.addEventListener("click",function(){
+            selector.style.transform = "scale(0)"
+        })
     }
+
 
 })
 
@@ -138,7 +162,7 @@ mainArr.map(item => {
 
 
 
-
+// viewport part
 window.onload = function () {
     mainArr.map(item => {
         if (isInViewport(item)) {
