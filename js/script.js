@@ -131,6 +131,7 @@ mainArr.map(item => {
         let id = item.dataset.popid
         let bg = item.dataset.bg
         let selector = document.querySelector(`${id}`)
+        selector.style.opacity = "0"
         selector.style.width = "100%"
         selector.style.height = "100vh"
         selector.style.background = `${bg}`
@@ -142,6 +143,7 @@ mainArr.map(item => {
 
         item.addEventListener("click",function(){
             selector.style.transform = "scale(1)"
+            selector.style.opacity = "1"
         })
     }else if(pluginName === "popclose"){
         let id = item.dataset.popid
@@ -149,6 +151,13 @@ mainArr.map(item => {
         selector.style.cursor = "pointer"
         item.addEventListener("click",function(){
             selector.style.transform = "scale(0)"
+            selector.style.opacity = "0"
+        })
+    }else if(pluginName === "topbottom"){
+        let scrollValue = item.dataset.scrollvalue
+        console.log(scrollValue)
+        item.addEventListener("click",function(){
+            window.scrollTo({top:scrollValue})
         })
     }
 
