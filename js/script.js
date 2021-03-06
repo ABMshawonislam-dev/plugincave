@@ -13,9 +13,10 @@ function isInViewport(element) {
 }
 
 let menu = document.querySelector(".menu")
-let scrollAmout;
-let elDistanceToTop = window.pageYOffset + menu.getBoundingClientRect().top
-window.addEventListener("scroll",function(){
+if(menu){
+    let scrollAmout;
+    let elDistanceToTop = window.pageYOffset + menu.getBoundingClientRect().top
+    window.addEventListener("scroll",function(){
      scrollAmout = window.pageYOffset
      if(scrollAmout > elDistanceToTop){
         menu.classList.add("menufixed")
@@ -23,6 +24,8 @@ window.addEventListener("scroll",function(){
         menu.classList.remove("menufixed")
     }
 })
+}
+
 
 // find viewport end
 
