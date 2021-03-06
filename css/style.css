@@ -33,3 +33,16 @@ pre{
     -ms-transform: translate(-50%,-50%);
     -o-transform: translate(-50%,-50%);
 }
+
+.check{
+   
+    position: relative;
+    width: 100%;
+    height: 500px;
+
+}
+
+.man{
+    top: 100px;
+    right: 280px;
+}

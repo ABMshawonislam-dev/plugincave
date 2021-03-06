@@ -175,9 +175,21 @@ mainArr.map(item => {
         })
     }else if(pluginName === "topbottom"){
         let scrollValue = item.dataset.scrollvalue
-        console.log(scrollValue)
         item.addEventListener("click",function(){
             window.scrollTo({top:scrollValue})
+        })
+    }else if(pluginName === "parallax"){
+        let speed = item.dataset.speed
+        item.style.position = "absolute"
+        let check = document.querySelector(".check")
+        document.addEventListener("mousemove",function(e){
+            let x = (window.innerWidth - e.pageX * speed)/100
+            let y = (window.innerWidth - e.pageY * speed)/100
+            item.style.transform = `translate3d(${x}px,${y}px,0px)`
+            item.style.transformStyle = "preserve-3d"
+            item.style.backfaceVisibility = "hidden"
+            item.style.transition = ".4s"
+
         })
     }
 
