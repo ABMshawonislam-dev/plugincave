@@ -8,6 +8,44 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light menu">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+
   <h1 class="greeting">WELCOME TO PlunginCave</h1> 
   <div class="abmshawon" data-name="bgspreader" data-bg="url(images/banner.jpg)" data-height="250vh" data-view="true">
 </div>
@@ -19,9 +57,9 @@
 
       <div class="details mt-5">
         <h3>USAGE</h3>
-        <p>Include <span class="text-danger">plugincave.js</span> into the footer</p>
+        <p>Include <a href="http://plugincave.com/js/script.js" class="text-danger">plugincave.js</a> into the footer</p>
       </div>
-      <pre>&lt;script src="js/plugincave.js"&gt;&lt;/script&gt;</pre>
+      <pre>&lt;script src="//plugincave.com/js/script.js"&gt;&lt;/script&gt;</pre>
     </div>
 
     <div class="details mt-5">
@@ -132,7 +170,16 @@
   </div>
   <pre>&lt;button class="abmshawon" data-name="topbottom" data-scrollvalue="0"&gt;click&lt;/button&gt;</pre>
 
+  <div class="details mt-5">
+    <h3></h3>
+  </div>
+  <pre></pre>
 
+  <div class="details mt-5">
+    <h3>FOR FIXED MENU</h3>
+    <p>Add <span class="text-danger">menu</span> class into your nav tag it will added a <span class="text-danger">menufixed</span> class after scrolling</p>
+  </div>
+  
       
 
 
