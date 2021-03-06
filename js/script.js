@@ -11,6 +11,7 @@ function isInViewport(element) {
         rect.right <= (window.innerWidth || document.documentElement.clientWidth)
     );
 }
+
 let menu = document.querySelector(".menu")
 let scrollAmout;
 let elDistanceToTop = window.pageYOffset + menu.getBoundingClientRect().top
@@ -147,7 +148,7 @@ mainArr.map(item => {
         let selector = document.querySelector(`${id}`)
         selector.style.opacity = "0"
         selector.style.width = "100%"
-        selector.style.height = "100vh"
+        selector.style.height = "0"
         selector.style.background = `${bg}`
         selector.style.position = "fixed"
         selector.style.top = "0"
@@ -158,6 +159,7 @@ mainArr.map(item => {
         item.addEventListener("click",function(){
             selector.style.transform = "scale(1)"
             selector.style.opacity = "1"
+            selector.style.height = "100vh"
         })
     }else if(pluginName === "popclose"){
         let id = item.dataset.popid
@@ -166,6 +168,7 @@ mainArr.map(item => {
         item.addEventListener("click",function(){
             selector.style.transform = "scale(0)"
             selector.style.opacity = "0"
+            selector.style.height = "0"
         })
     }else if(pluginName === "topbottom"){
         let scrollValue = item.dataset.scrollvalue
