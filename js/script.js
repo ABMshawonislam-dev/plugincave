@@ -12,17 +12,15 @@ function isInViewport(element) {
     );
 }
 let menu = document.querySelector(".menu")
+let scrollAmout;
+let elDistanceToTop = window.pageYOffset + menu.getBoundingClientRect().top
 window.addEventListener("scroll",function(){
- 
-    let scrollAmout = window.pageYOffset
-    let elDistanceToTop = window.pageYOffset + menu.getBoundingClientRect().top
-    console.log(elDistanceToTop)
-    if(scrollAmout > elDistanceToTop){
+     scrollAmout = window.pageYOffset
+     if(scrollAmout > elDistanceToTop){
         menu.classList.add("menufixed")
     }else{
         menu.classList.remove("menufixed")
     }
-    
 })
 
 // find viewport end
