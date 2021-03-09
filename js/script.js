@@ -191,6 +191,54 @@ mainArr.map(item => {
             item.style.transition = ".4s"
 
         })
+    }else if(pluginName === "popleft"){
+        let body = document.querySelector("body")
+        body.style.overflowX = "hidden"
+        let id = item.dataset.popid
+        let bg = item.dataset.bg
+        let selector = document.querySelector(`${id}`)
+        selector.style.width = "100%"
+        selector.style.height = "100%"
+        selector.style.background = `${bg}`
+        selector.style.position = "fixed"
+        selector.style.top = "0"
+        selector.style.left = "-100%"
+        selector.style.transition = ".4s"
+
+        item.addEventListener("click",function(){
+            selector.style.left = "0"
+        })
+    }else if(pluginName === "popleftclose"){
+        let id = item.dataset.popid
+        let selector = document.querySelector(`${id}`)
+        selector.style.cursor = "pointer"
+        item.addEventListener("click",function(){
+            selector.style.left = "-100%"
+        })
+    }else if(pluginName === "popright"){
+        let body = document.querySelector("body")
+        body.style.overflowX = "hidden"
+        let id = item.dataset.popid
+        let bg = item.dataset.bg
+        let selector = document.querySelector(`${id}`)
+        selector.style.width = "100%"
+        selector.style.height = "100%"
+        selector.style.background = `${bg}`
+        selector.style.position = "fixed"
+        selector.style.top = "0"
+        selector.style.right = "-100%"
+        selector.style.transition = ".4s"
+
+        item.addEventListener("click",function(){
+            selector.style.right = "0"
+        })
+    }else if(pluginName === "poprightclose"){
+        let id = item.dataset.popid
+        let selector = document.querySelector(`${id}`)
+        selector.style.cursor = "pointer"
+        item.addEventListener("click",function(){
+            selector.style.right = "-100%"
+        })
     }
 
 
