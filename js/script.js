@@ -239,6 +239,50 @@ mainArr.map(item => {
         item.addEventListener("click",function(){
             selector.style.right = "-100%"
         })
+    }else if(pluginName === "poptop"){
+        let id = item.dataset.popid
+        let bg = item.dataset.bg
+        let selector = document.querySelector(`${id}`)
+        selector.style.width = "100%"
+        selector.style.height = "100%"
+        selector.style.background = `${bg}`
+        selector.style.position = "fixed"
+        selector.style.top = "-100%"
+        selector.style.left = "0"
+        selector.style.transition = ".4s"
+
+        item.addEventListener("click",function(){
+            selector.style.top = "0"
+        })
+    }else if(pluginName === "poptopclose"){
+        let id = item.dataset.popid
+        let selector = document.querySelector(`${id}`)
+        selector.style.cursor = "pointer"
+        item.addEventListener("click",function(){
+            selector.style.top = "-100%"
+        })
+    }else if(pluginName === "popbottom"){
+        let id = item.dataset.popid
+        let bg = item.dataset.bg
+        let selector = document.querySelector(`${id}`)
+        selector.style.width = "100%"
+        selector.style.height = "100%"
+        selector.style.background = `${bg}`
+        selector.style.position = "fixed"
+        selector.style.bottom = "-100%"
+        selector.style.left = "0"
+        selector.style.transition = ".4s"
+
+        item.addEventListener("click",function(){
+            selector.style.bottom = "0"
+        })
+    }else if(pluginName === "popbottomclose"){
+        let id = item.dataset.popid
+        let selector = document.querySelector(`${id}`)
+        selector.style.cursor = "pointer"
+        item.addEventListener("click",function(){
+            selector.style.bottom = "-100%"
+        })
     }
 
 
